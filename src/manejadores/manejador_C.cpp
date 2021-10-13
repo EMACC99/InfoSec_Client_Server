@@ -17,6 +17,8 @@ bool manejador_cliente(int sockfd){
         }
         
         enviar_mensaje(sockfd, pass);
+        recibir_mensaje(sockfd, pass);
+        std::cout << pass << std::endl;
     }
     return false;
 }
