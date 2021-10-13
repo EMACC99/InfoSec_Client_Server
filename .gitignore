@@ -34,3 +34,7 @@
 
 # ide
 .vscode/
+
+#bins
+cliente
+server
