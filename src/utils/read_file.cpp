@@ -1,6 +1,7 @@
 #include "../../include/utils/read_file.hpp"
 
 std::string read_password(const std::string &path){
+    std::cout << std::filesystem::current_path() << std::endl;
     std::ifstream archivoPassword;
     archivoPassword.open(path, std::ifstream::in);
     std::string pass;

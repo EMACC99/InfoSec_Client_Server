@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -g -Wpedantic -Wno-sign-compare
+CFLAGS = -Wall -g -Wpedantic -Wno-sign-compare -std=c++2a
 # LIBFLAGS =
 MANEJADORES = src/manejadores/manejador_
 MENSAJES = src/manejadores/mensajes.cpp
