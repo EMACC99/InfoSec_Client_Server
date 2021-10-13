@@ -2,6 +2,4 @@
 
 #include "../sockets/socket_includes.hpp"
 
-bool manejador_cliente(int sockfd){
-    
-}
+bool manejador_cliente(int sockfd);

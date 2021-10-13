@@ -1,4 +1,5 @@
 #include "../../include/sockets/socket_includes.hpp"
+#include "../../include/manejadores/manejador_C.hpp"
 
 void client_listener(int sockfd){
 
@@ -17,7 +18,7 @@ int main(){
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0 );
     if (sockfd == -1){
-        std::cout << "Creacion del socket falllida" << std::endl;
+        std::cout << "Creacion del socket fallida" << std::endl;
         EXIT_FAILURE;
     }
 

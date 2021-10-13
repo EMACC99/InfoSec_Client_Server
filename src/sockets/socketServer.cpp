@@ -1,5 +1,5 @@
 #include "../../include/sockets/socket_includes.hpp"
-
+#include "../../include/manejadores/manejador_S.hpp"
 
 void server_listener(int sockfd){
     std::string pass = read_password("../../password.txt");
@@ -21,11 +21,11 @@ int main() {
 	// socket create and verification
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd == -1) {
-		printf("Socket creation failed...\n");
-		exit(0);
+		std::cout << "Socket creation failed..." << std::endl;
+		EXIT_FAILURE;
 	}
 	else {
-		printf("Socket successfully created...\n");
+		std::cout << "Socket successfully created..." << std::endl;
 	}
 	
 	bzero(&server, sizeof(server));
