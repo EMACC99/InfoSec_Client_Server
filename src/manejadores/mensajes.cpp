@@ -15,3 +15,10 @@ void enviar_mensaje(int sockfd, std::string &mensaje){
     const char *x = mensaje.c_str();
     write(sockfd, x, sizeof(buff));
 }
+
+void enviar_mensaje(int sockfd, const char *mensaje){
+    char buff[MAX];
+    bzero(buff, MAX);
+
+    write(sockfd, mensaje, sizeof(buff));
+}

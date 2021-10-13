@@ -19,9 +19,9 @@ bool manejador_servidor(int sockfd, const std::string &correct_pass){
         return false;
     
     if (string_checker(mensaje, correct_pass, correct_pass.size()))
-        std::cout << "logeado puto" << std::endl;
+        enviar_mensaje(sockfd, "logeado");
     
     else
-        std::cout << "no loegado puto" << std::endl;
+        enviar_mensaje(sockfd, "no logeado");
 
 }
