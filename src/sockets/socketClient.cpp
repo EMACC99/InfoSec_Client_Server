@@ -6,7 +6,8 @@ void client_listener(int sockfd){
     bool status = true;
 
     while (status){
-        status = manejador_cliente(sockfd);
+        // status = manejador_cliente(sockfd);
+        status = manejador_cliente_fuerza_bruta(sockfd);
     }
 
 }

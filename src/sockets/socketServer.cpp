@@ -22,11 +22,11 @@ int main() {
 	// socket create and verification
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd == -1) {
-		std::cout << "Socket creation failed..." << std::endl;
+		std::cout << "Creacion del Socket fallo..." << std::endl;
 		EXIT_FAILURE;
 	}
 	else {
-		std::cout << "Socket successfully created..." << std::endl;
+		std::cout << "Socket creado exitosamente..." << std::endl;
 	}
 	
 	bzero(&server, sizeof(server));
@@ -38,20 +38,20 @@ int main() {
 	
 	// Binding newly created socket to given IP and verification
 	if ((bind(sockfd, (SA*)&server, sizeof(server))) != 0) {
-		std::cout << "Socket bind failed..." <<std::endl;
+		std::cout << "Socket bind fallo..." <<std::endl;
 		EXIT_FAILURE;
 	}
 	else
-		std::cout << "Socket successfully binded..." << std::endl;
+		std::cout << "Socket bindedado..." << std::endl;
 	
 	
 	// Now server is ready to listen and verification
 	if ((listen(sockfd, 5)) != 0) {
-		std::cout << "Listen failed..." << std::endl;
+		std::cout << "Fallo el listener..." << std::endl;
 		EXIT_FAILURE;
 	}
 	else 
-		std::cout << "Server listening..." << std::endl;
+		std::cout << "Server escuchando..." << std::endl;
 	
 	
 	len = sizeof(cli);
@@ -59,11 +59,11 @@ int main() {
 	// Accept the data packet from client and verification
 	connfd = accept(sockfd, (SA*)&cli, &len);
 	if ( connfd < 0 ) {
-		std::cout << "Server acccept failed..." << std::endl;
+		std::cout << "Server no acepto al cliente..." << std::endl;
 		EXIT_FAILURE;
 	}
 	else 
-		std::cout << "Server acccept the client..." << std::endl;
+		std::cout << "Server acepto al client..." << std::endl;
 	
 	
 	// Function for chatting between client and server
