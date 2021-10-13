@@ -30,7 +30,7 @@ int main(){
 
     //asignar IP, PORT
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("192.168.100.184");
+    server.sin_addr.s_addr = inet_addr(IP_SERVER);
 	server.sin_port = htons(PORT);
 
     //connect

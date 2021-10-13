@@ -63,7 +63,7 @@ int main() {
 		EXIT_FAILURE;
 	}
 	else 
-		std::cout << "Server acepto al client..." << std::endl;
+		std::cout << "Server acepto al cliente..." << std::endl;
 	
 	
 	// Function for chatting between client and server
