@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -Wpedantic -Wno-sign-compare
 # LIBFLAGS =
 MANEJADORES = src/manejadores/manejador_
 MENSAJES = src/manejadores/mensajes.cpp
@@ -16,4 +16,4 @@ server:
 	$(CC) $(CFLAGS) src/sockets/$(SERVER_BIN).cpp $(DEPS_S) $^ -o $@
 
 clean:
-	rm *.o server cliente
+	rm server cliente
