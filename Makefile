@@ -1,12 +1,19 @@
 CC = g++
 CFLAGS = -Wall -g
-LIBFLAGS =
-DEPS = 
-OBJ = 
-SERVER_BIN =
-CLIENT_BIN =
+# LIBFLAGS =
+MANEJADORES = src/manejadores/manejador_
+MENSAJES = src/manejadores/mensajes.cpp
+UTILS = src/utils/read_file.cpp
+DEPS_C = $(MANEJADORES)C.cpp $(MENSAJES)
+DEPS_S = $(MANEJADORES)S.cpp $(MENSAJES) $(UTILS)
+SERVER_BIN = socketServer
+CLIENT_BIN = socketClient
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+cliente:
+	$(CC) $(CFLAGS) src/sockets/$(CLIENT_BIN).cpp $(DEPS_C) $^ -o $@
 
-$(SERVER)
+server: 
+	$(CC) $(CFLAGS) src/sockets/$(SERVER_BIN).cpp $(DEPS_S) $^ -o $@
+
+clean:
+	rm *.o $(SERVER_BIN) $(CLIENT_BIN)
