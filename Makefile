@@ -16,4 +16,4 @@ server:
 	$(CC) $(CFLAGS) src/sockets/$(SERVER_BIN).cpp $(DEPS_S) $^ -o $@
 
 clean:
-	rm *.o $(SERVER_BIN) $(CLIENT_BIN)
+	rm *.o server cliente
