@@ -7,6 +7,7 @@
 #include <string.h>
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 
 #define SA struct sockaddr
@@ -14,6 +15,6 @@
 constexpr int MAX = 140;
 constexpr int PORT = 8080;
 
-void recibir_mensaje(int sockfd, std::string &mensaje);
-void enviar_mensaje(int sockfd, std::string &mensaje);
+// void recibir_mensaje(int sockfd, std::string &mensaje);
+// void enviar_mensaje(int sockfd, std::string &mensaje);
 

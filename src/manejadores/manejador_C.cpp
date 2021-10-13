@@ -8,7 +8,7 @@ bool manejador_cliente(int sockfd){
     std::string pass;
 
     while(true){
-        std::cout << "Introduzca la contraseña";
+        std::cout << "Introduzca la contraseña: ";
         std::cin >> pass;
         if (pass[0] == ESC){
             pass = "exit";
