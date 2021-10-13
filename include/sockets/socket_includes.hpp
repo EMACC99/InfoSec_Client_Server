@@ -14,9 +14,6 @@
 constexpr int MAX = 140;
 constexpr int PORT = 8080;
 
-
-std::string read_password(const std::string &path);
-
 void recibir_mensaje(int sockfd, std::string &mensaje);
 void enviar_mensaje(int sockfd, std::string &mensaje);
 

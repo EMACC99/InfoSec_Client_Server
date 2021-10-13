@@ -1,4 +1,6 @@
 #include "../../include/manejadores/manejador_C.hpp"
+#include "../../include/manejadores/mensajes.hpp"
+
 constexpr int ESC = 27;
 
 bool manejador_cliente(int sockfd){

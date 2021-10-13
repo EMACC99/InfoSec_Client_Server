@@ -19,7 +19,7 @@ int main(){
     sockfd = socket(AF_INET, SOCK_STREAM, 0 );
     if (sockfd == -1){
         std::cout << "Creacion del socket fallida" << std::endl;
-        EXIT_FAILURE;
+        exit(1);
     }
 
     else
@@ -29,13 +29,14 @@ int main(){
 
     //asignar IP, PORT
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("192.168.100.184");
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
 	server.sin_port = htons(PORT);
 
     //connect
     if (connect(sockfd, (SA*)&server, sizeof(server)) != 0){
         std::cout << "Conexion con el servidor fallo" << std::endl;
-        EXIT_FAILURE;
+        close(sockfd);
+        exit(1);
     }
     else
         std::cout << "Conexion con el servidor exitosa" << std::endl;

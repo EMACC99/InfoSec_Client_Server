@@ -1,4 +1,5 @@
 #include "../../include/manejadores/manejador_S.hpp"
+#include "../../include/manejadores/mensajes.hpp"
 
 bool string_checker(const std::string &a, const std::string &b, const size_t size){
     //esto es adrede

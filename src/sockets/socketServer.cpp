@@ -1,5 +1,6 @@
 #include "../../include/sockets/socket_includes.hpp"
 #include "../../include/manejadores/manejador_S.hpp"
+#include "../../include/utils/read_file.hpp"
 
 void server_listener(int sockfd){
     std::string pass = read_password("../../password.txt");
