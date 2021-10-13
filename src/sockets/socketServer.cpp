@@ -3,7 +3,7 @@
 #include "../../include/utils/read_file.hpp"
 
 void server_listener(int sockfd){
-    std::string pass = read_password("../../password.txt");
+    std::string pass = read_password("password.txt");
 
     bool status = true;
 
