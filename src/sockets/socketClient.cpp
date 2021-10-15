@@ -20,7 +20,7 @@ int main(){
     sockfd = socket(AF_INET, SOCK_STREAM, 0 );
     if (sockfd == -1){
         std::cout << "Creacion del socket fallida" << std::endl;
-        exit(1);
+        return EXIT_FAILURE;
     }
 
     else
@@ -37,7 +37,7 @@ int main(){
     if (connect(sockfd, (SA*)&server, sizeof(server)) != 0){
         std::cout << "Conexion con el servidor fallo" << std::endl;
         close(sockfd);
-        exit(1);
+        return EXIT_FAILURE;
     }
     else
         std::cout << "Conexion con el servidor exitosa" << std::endl;

@@ -23,7 +23,7 @@ int main() {
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd == -1) {
 		std::cout << "Creacion del Socket fallo..." << std::endl;
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	else {
 		std::cout << "Socket creado exitosamente..." << std::endl;
@@ -39,7 +39,7 @@ int main() {
 	// Binding newly created socket to given IP and verification
 	if ((bind(sockfd, (SA*)&server, sizeof(server))) != 0) {
 		std::cout << "Socket bind fallo..." <<std::endl;
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	else
 		std::cout << "Socket bindedado..." << std::endl;
@@ -48,7 +48,7 @@ int main() {
 	// Now server is ready to listen and verification
 	if ((listen(sockfd, 5)) != 0) {
 		std::cout << "Fallo el listener..." << std::endl;
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	else 
 		std::cout << "Server escuchando..." << std::endl;
@@ -60,7 +60,7 @@ int main() {
 	connfd = accept(sockfd, (SA*)&cli, &len);
 	if ( connfd < 0 ) {
 		std::cout << "Server no acepto al cliente..." << std::endl;
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	else 
 		std::cout << "Server acepto al cliente..." << std::endl;
