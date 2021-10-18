@@ -45,4 +45,5 @@ int main(){
     client_listener(sockfd);
 
     close(sockfd);
+    return EXIT_SUCCESS;
 }
