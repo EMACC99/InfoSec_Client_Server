@@ -28,23 +28,44 @@ bool manejador_cliente_fuerza_bruta(int sockfd){
     return false;
 }
 
+void menu(){
+    std::cout << "Menu de cosa de contraseña \n";
+    std::cout << "1) Crear cuenta \n";
+    std::cout << "2) iniciar sesion \n";
+    std::cout << "3) Salir" << std::endl;
+}
+
+
+void pedir_datos(Datagrama &data){
+    std::cout << "Usuario: ";
+    std::cin >> data.user;
+    std::cout << "Password: ";
+    std::cin >> data.pass;
+}
+
 
 bool manejador_cliente(int sockfd){
-    std::cout << "Coso de contraseñas, precione esc para salir" << std::endl;    
-    std::string pass;
+    std::cout << "Coso de contraseñas" << std::endl;    
+    std::string choice;
 
     while(true){
-        std::cout << "Introduzca la contraseña: ";
-        std::cin >> pass;
-        if (pass[0] == ESC){
-            pass = "exit";
-            enviar_mensaje(sockfd, pass);
+        menu();
+        Datagrama data;
+        if (choice == "3"){
+            enviar_mensaje(sockfd, "3");
             break;
         }
         
-        enviar_mensaje(sockfd, pass);
-        recibir_mensaje(sockfd, pass);
-        std::cout << pass << std::endl;
+        data.operacion = choice;
+        pedir_datos(data);
+        data.pass = std::to_string(std::hash<std::string>{}(data.pass));
+
+        std::string mensaje = data.construct_string();
+        enviar_mensaje(sockfd, mensaje);
+        std::cout << mensaje << std::endl;
+        
+        recibir_mensaje(sockfd, mensaje);
+        std::cout << mensaje << std::endl;
     }
     return false;
 }

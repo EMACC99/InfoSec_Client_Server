@@ -1,7 +1,6 @@
 #include "../../include/manejadores/mensajes.hpp"
 
 void recibir_mensaje(int sockfd, std::string &mensaje){
-
     char buff[MAX];
     bzero(buff, MAX);
     read(sockfd, buff, sizeof(buff));

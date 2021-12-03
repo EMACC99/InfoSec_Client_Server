@@ -1,17 +1,25 @@
 #include "../../include/sockets/socket_includes.hpp"
 #include "../../include/manejadores/manejador_S.hpp"
-#include "../../include/utils/read_file.hpp"
 
-void server_listener(int sockfd){
-    std::string pass = read_password("password.txt");
+void server_listener(int sockfd, std::unique_ptr<sql::Connection> &conn){
 
     bool status = true;
 
     while (status){
-        status = manejador_servidor(sockfd, pass);
+        status = manejador_servidor(sockfd, conn);
     }
 }
 
+std::unique_ptr<sql::Connection> connect_db(){
+	sql::Driver *driver = sql::mariadb::get_driver_instance();
+	
+	sql::SQLString url("jdbc:mariadb://localhost:3306/todo");
+	sql::Properties properties({{"user", "app_user"}, {"password", "Password123!"}});
+
+	std::unique_ptr<sql::Connection> conn (driver -> connect(url, properties));
+
+	return conn;
+}
 
 int main() {
 	
@@ -67,7 +75,8 @@ int main() {
 	
 	
 	// Function for chatting between client and server
-	server_listener(connfd);
+	std::unique_ptr<sql::Connection> conn = connect_db();
+	server_listener(connfd, conn);
 	
 	// After chatting close the socket
 	close(sockfd);
