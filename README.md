@@ -7,7 +7,7 @@ El programa consta de dos partes, un cliente y un servidor, aunque compartan arc
 Las librerias requeridas son:
 * gcc/g++
 * make
-* libfmt-dev Para instalar esta libreria, se puede consultar [aqui](https://mariadb.com/docs/clients/mariadb-connectors/connector-cpp/install/)
+* mariadb-connector-cpp Para instalar esta libreria, se puede consultar [aqui](https://mariadb.com/docs/clients/mariadb-connectors/connector-cpp/install/)
 * libboost-all-dev
 * libfmt-dev
 
