@@ -22,9 +22,11 @@ void login (std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, std:
         sql::ResultSet *res = stmnt -> executeQuery();
     
         while(res -> next()){
-            if(!strcmp(res -> getString("pass"), datos.pass.c_str()))
-                message = "se encontro el usuario";
+            if(!strcmp(res -> getString("pass"), datos.pass.c_str())){
+                message = "se encontro el usuario, loggeado";
                 return;
+
+            }
         }
         message = "no se encontro el usuario";
         delete &stmnt;
@@ -46,19 +48,20 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
         sql ::ResultSet *res = stmnt -> executeQuery();
 
         while (res -> next()){
-            if (res -> getInt(1) > 0)
+            if (res -> getInt(1) > 0){
                 message = "El usuario ya existe";
                 return;
+            }
         }
         delete &stmnt;
-        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
+        std::unique_ptr<sql::PreparedStatement> stmnt2 (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
 
-        stmnt -> setString(1, datos.user);
-        stmnt -> setString(2, datos.pass);
-        stmnt -> executeQuery();
+        stmnt2 -> setString(1, datos.user);
+        stmnt2 -> setString(2, datos.pass);
+        stmnt2 -> executeQuery();
         message = "Registro exitoso";
 
-        delete &stmnt;
+        delete &stmnt2;
         delete res;
     }
     catch(const sql::SQLException &e){
