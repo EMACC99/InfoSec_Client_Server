@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <filesystem>
 
+#include "../utils/datagrama.hpp"
+
 
 #define SA struct sockaddr
 

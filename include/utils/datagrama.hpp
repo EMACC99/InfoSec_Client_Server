@@ -1,6 +1,9 @@
+#pragma once
 #include <string>
-
-#include "../utils/split_strings.hpp"
+#include <sstream>
+#include <iterator>
+#include <vector>
+#include <boost/algorithm/string.hpp>
 
 class Datagrama {
 
@@ -9,14 +12,18 @@ public:
     std::string pass;
     std::string operacion;
 
+    Datagrama() = default;
+
     Datagrama(const std::string &user, const std::string &pass, const std::string &operacion){
         this -> user = user;
         this -> pass = pass;
         this -> operacion = operacion;
     }
 
-    Datagrama(std::string message){
-        std::vector splitted_string = split_by_char(message);
+    Datagrama(std::string &message){
+        std::vector<std::string> splitted_string;
+        boost::split(splitted_string, message, [](char c){return c == ';';});
+
         this -> operacion = splitted_string[0];
         this -> user = splitted_string[1];
         this -> pass = splitted_string[2];
@@ -32,5 +39,4 @@ public:
 
         return temp;
     }
-
 };
