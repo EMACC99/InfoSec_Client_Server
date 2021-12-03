@@ -6,6 +6,6 @@ CREATE TABLE MY_SERVICE.users(
     pass varchar(200) NOT NULL
 );
 
-CREATE USER IF NOT EXISTS app_user@localhost IDENTIFIED BY 'Password123';
+CREATE USER IF NOT EXISTS app_user@localhost IDENTIFIED BY 'Password123!';
 
-GRANT  ALL PRIVILIGES ON MY_SERVICE.* to app_user@localhost;
+GRANT ALL PRIVILEGES ON MY_SERVICE.* to app_user@localhost;
