@@ -47,15 +47,16 @@ void pedir_datos(Datagrama &data){
 bool manejador_cliente(int sockfd){
     std::cout << "Coso de contraseñas" << std::endl;    
     std::string choice;
+    Datagrama data;
 
     while(true){
         menu();
-        Datagrama data;
+        std::cin >> choice;
         if (choice == "3"){
             enviar_mensaje(sockfd, "3");
             break;
         }
-        
+
         data.operacion = choice;
         pedir_datos(data);
         data.pass = std::to_string(std::hash<std::string>{}(data.pass));
@@ -64,8 +65,7 @@ bool manejador_cliente(int sockfd){
 
         std::cout << mensaje << std::endl;
         enviar_mensaje(sockfd, mensaje);
-        
-        
+
         recibir_mensaje(sockfd, mensaje);
         std::cout << mensaje << std::endl;
     }

@@ -14,39 +14,56 @@ bool not_so_bad_string_checker(const std::string &a, const std::string&b, const 
     return a == b ? true : false;
 }
 
-bool login (std::unique_ptr<sql::Connection> &conn, const Datagrama &datos){
+void login (std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, std::string &message){
     try{
-        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("SELEC pass FROM users WHERE user = ?"));
+        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("SELECT pass FROM users WHERE userName = ?"));
         stmnt -> setString(1, datos.user);
 
         sql::ResultSet *res = stmnt -> executeQuery();
-        
-        bool succes = false;
-
+    
         while(res -> next()){
             if(!strcmp(res -> getString("pass"), datos.pass.c_str()))
-                succes = true;
+                message = "se encontro el usuario";
+                return;
         }
-
-        return succes;
+        message = "no se encontro el usuario";
+        delete &stmnt;
+        delete res;
     }
     catch(sql::SQLException &e){
         std::cerr << "Error making queries: " << e.what() << std::endl;
-        return false;
+        message = "Error en la base de datos";
+
     }
 }
 
 
-void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos){
+void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, std::string &message){
     try{
-        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("INSERT INTO users (user, pass) VALUES (?, ?)"));
+        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("SELECT COUNT(userName) FROM users WHERE userName = ?"));
+        stmnt -> setString(1,datos.user);
+        
+        sql ::ResultSet *res = stmnt -> executeQuery();
+
+        while (res -> next()){
+            if (res -> getInt(1) > 0)
+                message = "El usuario ya existe";
+                return;
+        }
+        
+        std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
 
         stmnt -> setString(1, datos.user);
         stmnt -> setString(2, datos.pass);
         stmnt -> executeQuery();
+        message = "Registro exitoso";
+
+        delete &stmnt;
+        delete res;
     }
     catch(const sql::SQLException &e){
         std::cerr << e.what() << '\n';
+        message = "ah ocurrido un error en la base de datos";
     }
     
 }
@@ -59,13 +76,14 @@ bool manejador_servidor(int sockfd, std::unique_ptr<sql::Connection> &conn){
     
     Datagrama data(mensaje);
 
-    if (data.operacion == "1"){
-        if (login(conn, data))
-            enviar_mensaje(sockfd, "logeado");
-        enviar_mensaje(sockfd, "no logeado");
+    if (data.operacion == "2"){
+        login(conn, data, mensaje);
     }
-    else if (data.operacion == "2")
-        registro(conn, data);
+    else if (data.operacion == "1"){
+        registro(conn, data, mensaje);
+        
+    }
 
+    enviar_mensaje(sockfd, mensaje);
     return true;
 }

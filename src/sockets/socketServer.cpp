@@ -13,7 +13,7 @@ void server_listener(int sockfd, std::unique_ptr<sql::Connection> &conn){
 std::unique_ptr<sql::Connection> connect_db(){
 	sql::Driver *driver = sql::mariadb::get_driver_instance();
 	
-	sql::SQLString url("jdbc:mariadb://localhost:3306/todo");
+	sql::SQLString url("jdbc:mariadb://localhost:3306/MY_SERVICE");
 	sql::Properties properties({{"user", "app_user"}, {"password", "Password123!"}});
 
 	std::unique_ptr<sql::Connection> conn (driver -> connect(url, properties));
@@ -80,6 +80,7 @@ int main() {
 	server_listener(connfd, conn);
 	
 	// After chatting close the socket
+	delete &conn;
 	close(sockfd);
 	return EXIT_SUCCESS;
 }

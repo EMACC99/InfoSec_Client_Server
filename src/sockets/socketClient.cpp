@@ -6,8 +6,8 @@ void client_listener(int sockfd){
     bool status = true;
 
     while (status){
-        // status = manejador_cliente(sockfd);
-        status = manejador_cliente_fuerza_bruta(sockfd);
+        status = manejador_cliente(sockfd);
+        // status = manejador_cliente_fuerza_bruta(sockfd);
     }
 
 }
@@ -30,7 +30,7 @@ int main(){
 
     //asignar IP, PORT
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr(IP_SERVER);
+    server.sin_addr.s_addr = inet_addr(IP_LOCAL);
 	server.sin_port = htons(PORT);
 
     //connect
