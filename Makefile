@@ -10,6 +10,11 @@ DEPS_S = $(MANEJADORES)S.cpp $(MENSAJES) $(UTILS)
 SERVER_BIN = socketServer
 CLIENT_BIN = socketClient
 
+
+all:
+	$(CC) $(CFLAGS) src/sockets/$(CLIENT_BIN).cpp $(DEPS_C) $^ -o cliente
+	$(CC) $(CFLAGS) src/sockets/$(SERVER_BIN).cpp $(DEPS_S) $(LIBFLAGS) $^ -o server
+
 cliente:
 	$(CC) $(CFLAGS) src/sockets/$(CLIENT_BIN).cpp $(DEPS_C) $^ -o $@
 
