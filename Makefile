@@ -1,9 +1,10 @@
 CC = g++
-CFLAGS = -Wall -g -Wpedantic -Wno-sign-compare -std=c++2a -s -Os
+CFLAGS = -Wall -g -Wpedantic -Wno-sign-compare -std=c++14
 LIBFLAGS = -lmariadbcpp
 MANEJADORES = src/manejadores/manejador_
 MENSAJES = src/manejadores/mensajes.cpp
-UTILS = src/utils/read_file.cpp
+# UTILS = src/utils/read_file.cpp
+UTILS = 
 DEPS_C = $(MANEJADORES)C.cpp $(MENSAJES)
 DEPS_S = $(MANEJADORES)S.cpp $(MENSAJES) $(UTILS)
 SERVER_BIN = socketServer
