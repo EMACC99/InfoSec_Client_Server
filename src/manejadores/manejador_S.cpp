@@ -50,7 +50,7 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
                 message = "El usuario ya existe";
                 return;
         }
-        
+        delete &stmnt;
         std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
 
         stmnt -> setString(1, datos.user);
