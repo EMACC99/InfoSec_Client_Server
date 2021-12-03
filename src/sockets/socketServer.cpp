@@ -74,8 +74,9 @@ int main() {
 		std::cout << "Server acepto al cliente..." << std::endl;
 	
 	
-	// Function for chatting between client and server
 	std::unique_ptr<sql::Connection> conn = connect_db();
+	std::cout << "Conexion a la base exitosa" << std::endl;
+	// Function for chatting between client and server
 	server_listener(connfd, conn);
 	
 	// After chatting close the socket

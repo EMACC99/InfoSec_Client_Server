@@ -17,5 +17,5 @@
 
 constexpr int MAX = 140;
 constexpr int PORT = 8080;
-constexpr const char *IP_LOCAL = "127.0.0.1";
-constexpr const char *IP_SERVER = "192.168.100.184";
+constexpr const char *IP_LOCAL = "0.0.0.0";
+constexpr const char *IP_SERVER = "192.168.0.185";

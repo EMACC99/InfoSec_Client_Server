@@ -61,8 +61,10 @@ bool manejador_cliente(int sockfd){
         data.pass = std::to_string(std::hash<std::string>{}(data.pass));
 
         std::string mensaje = data.construct_string();
-        enviar_mensaje(sockfd, mensaje);
+
         std::cout << mensaje << std::endl;
+        enviar_mensaje(sockfd, mensaje);
+        
         
         recibir_mensaje(sockfd, mensaje);
         std::cout << mensaje << std::endl;

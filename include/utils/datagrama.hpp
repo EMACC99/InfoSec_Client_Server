@@ -12,7 +12,11 @@ public:
     std::string pass;
     std::string operacion;
 
-    Datagrama() = default;
+    Datagrama(){
+        this -> user = "";
+        this -> pass = "";
+        this -> operacion = "";
+    }
 
     Datagrama(const std::string &user, const std::string &pass, const std::string &operacion){
         this -> user = user;
