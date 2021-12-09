@@ -51,7 +51,6 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
                 return;
             }
         }
-        delete &stmnt;
         std::unique_ptr<sql::PreparedStatement> stmnt2 (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
 
         stmnt2 -> setString(1, datos.user);
