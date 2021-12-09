@@ -29,8 +29,6 @@ void login (std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, std:
             }
         }
         message = "no se encontro el usuario";
-        delete &stmnt;
-        delete res;
     }
     catch(sql::SQLException &e){
         std::cerr << "Error making queries: " << e.what() << std::endl;
@@ -61,8 +59,6 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
         stmnt2 -> executeQuery();
         message = "Registro exitoso";
 
-        delete &stmnt2;
-        delete res;
     }
     catch(const sql::SQLException &e){
         std::cerr << e.what() << '\n';

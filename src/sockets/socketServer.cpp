@@ -80,7 +80,6 @@ int main() {
 	server_listener(connfd, conn);
 	
 	// After chatting close the socket
-	delete &conn;
 	close(sockfd);
 	return EXIT_SUCCESS;
 }
