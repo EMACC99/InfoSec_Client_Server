@@ -43,7 +43,7 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
         std::unique_ptr<sql::PreparedStatement> stmnt (conn -> prepareStatement("SELECT COUNT(userName) FROM users WHERE userName = ?"));
         stmnt -> setString(1,datos.user);
         
-        sql ::ResultSet *res = stmnt -> executeQuery();
+        sql::ResultSet *res = stmnt -> executeQuery();
 
         while (res -> next()){
             if (res -> getInt(1) > 0){
