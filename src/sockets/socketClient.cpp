@@ -13,19 +13,34 @@ void client_listener(int sockfd){
 }
 
 int main(){
-    int sockfd,connfd;
     
+    
+    #ifdef _WIN32
+    WSADATA wsa;
+    SOCKET sockfd;
+
+    std::cout << "Iniciando Winsock ... \n";
+    if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
+        std::cout << "RIP, error: " << WSAGetLastError() << std::endl;
+        return EXIT_FAILURE;
+    }
+    
+    std::cout << "Iniciado \n";
+
+    #elif __linux__
+    int sockfd,connfd;
+    #endif
+
     struct sockaddr_in server;
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0 );
-    if (sockfd == -1){
+    if (sockfd == INVALID_SOCKET ){
         std::cout << "Creacion del socket fallida" << std::endl;
         return EXIT_FAILURE;
     }
 
     else
         std::cout << "Socket creado exitosamente" << std::endl;
-    
     bzero(&server, sizeof(server));
 
     //asignar IP, PORT

@@ -5,7 +5,7 @@
     #include <sys/socket.h>
     #include <unistd.h>
     #include <arpa/inet.h>
-
+    constexpr int INVALID_SOCKET = -1;
 #elif _WIN32
     #include <winsock.h> 
     #include <io.h>
