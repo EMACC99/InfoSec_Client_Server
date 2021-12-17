@@ -29,6 +29,8 @@ void login (std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, std:
             }
         }
         message = "no se encontro el usuario";
+        stmnt.reset();
+        
     }
     catch(sql::SQLException &e){
         std::cerr << "Error making queries: " << e.what() << std::endl;
@@ -51,12 +53,15 @@ void registro(std::unique_ptr<sql::Connection> &conn, const Datagrama &datos, st
                 return;
             }
         }
+        stmnt.reset();
+
         std::unique_ptr<sql::PreparedStatement> stmnt2 (conn -> prepareStatement("INSERT INTO users (userName, pass) VALUES (?, ?)"));
 
         stmnt2 -> setString(1, datos.user);
         stmnt2 -> setString(2, datos.pass);
         stmnt2 -> executeQuery();
         message = "Registro exitoso";
+        stmnt2.reset();
 
     }
     catch(const sql::SQLException &e){
